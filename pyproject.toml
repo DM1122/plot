@@ -1,0 +1,70 @@
+[tool.poetry]
+name = "main"
+version = "0.1.0"
+description = ""
+authors = ["DM1122"]
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.11"
+
+[tool.poetry.dev-dependencies]
+ipykernel = "^6.13.0"
+nbformat = "^5.3.0"
+pre-commit = "^2.16.0"
+pylint = "^v2.13.5"
+pytest = "^6.2.5"
+pytest-cov = "^3.0.0"
+pytest-html = "^3.1.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.isort]
+profile = "black"
+sections="FUTURE,STDLIB,THIRDPARTY,FIRSTPARTY,LOCALFOLDER"
+import_heading_stdlib="stdlib"
+import_heading_thirdparty="external"
+import_heading_firstparty="project"
+
+[tool.black]
+line-length = 88
+
+[tool.docformatter] # https://github.com/myint/docformatter/pull/77
+blank = true
+force-wrap = false
+in-place = true
+make-summary-multi-line = false
+pre-summary-newline = false
+recursive = true
+wrap-descriptions = 88
+wrap-summaries = 80
+
+[tool.pylint.master]
+ignore-patterns="^((?!\\.py).)*$"  # ignore files that are not python files
+recursive="yes"
+disable = ["invalid-name","too-many-arguments", "too-many-locals", "arguments-differ", "unnecessary-lambda", "too-many-instance-attributes", "protected-access", "duplicate-code", "too-few-public-methods", "logging-fstring-interpolation", "not-callable", "too-many-statements", "pointless-statement", "not-context-manager","fixme","too-many-branches","too-many-lines","line-too-long","anomalous-backslash-in-string","too-many-function-args"]
+max-line-length = 88
+generated-members=["numpy.*","torch.*","pygame.*"] # https://github.com/pytorch/pytorch/issues/701
+
+[tool.coverage.run]
+data_file = "logs/pytest/pytest-coverage"
+omit = ["tests/*"]
+
+[tool.pytest.ini_options]
+addopts = "--html=logs/pytest/pytest-report.html --self-contained-html --cov=./" 
+testpaths = ["tests"]
+log_cli = false
+log_cli_level = "INFO"
+log_cli_format = "%(asctime)s [%(levelname)8s] %(message)s (%(filename)s:%(lineno)s)"
+log_cli_date_format = "%Y-%m-%d %H:%M:%S"
+log_level = "DEBUG"
+log_format = "%(asctime)s [%(levelname)8s] %(message)s (%(filename)s:%(funcName)s:%(lineno)s)"
+log_date_format = "%Y-%m-%d %H:%M:%S"
+log_auto_indent = true
+markers = [
+    "slow: tests that are slow to run (deselect with '-m \"not slow\"').",
+    "plot: tests that produce plots.",
+    "timed: tests that run many times using timeit module.",
+    "star: a starred test. Marker should be removed once testing is complete."
+]
