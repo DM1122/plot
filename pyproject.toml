@@ -1,11 +1,13 @@
 [tool.poetry]
-name = "main"
+name = "plot"
 version = "0.1.0"
-description = ""
+description = "A wrapper ontop of popular plotting libraries for rapid data visualization."
 authors = ["DM1122"]
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.11"
+plotly = "^5.7.0"
+pandas = "^1.4.2"
 
 [tool.poetry.dev-dependencies]
 ipykernel = "^6.13.0"

@@ -1,18 +1,19 @@
 [![Python Version](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/downloads/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Pre-Commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://pre-commit.com/)
-[![GitHub repo size](https://img.shields.io/github/repo-size/DM1122/poetry-template)](https://github.com/DM1122/poetry-template)
-[![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/DM1122/poetry-template)](https://github.com/DM1122/poetry-template)
-![Lines of code](https://img.shields.io/tokei/lines/github/DM1122/poetry-template)
-[![Pytest](https://github.com/DM1122/poetry-template/actions/workflows/pytest.yml/badge.svg)](https://github.com/DM1122/poetry-template/actions/workflows/pytest.yml)
-[![codecov](https://codecov.io/gh/DM1122/poetry-template/branch/main/graph/badge.svg?token=E2N1A55HGR)](https://codecov.io/gh/DM1122/poetry-template)
+[![GitHub repo size](https://img.shields.io/github/repo-size/DM1122/plot)](https://github.com/DM1122/plot)
+[![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/DM1122/plot)](https://github.com/DM1122/plot)
+![Lines of code](https://img.shields.io/tokei/lines/github/DM1122/plot)
+[![Pytest](https://github.com/DM1122/plot/actions/workflows/pytest.yml/badge.svg)](https://github.com/DM1122/plot/actions/workflows/pytest.yml)
+[![codecov](https://codecov.io/gh/DM1122/plot/branch/main/graph/badge.svg?token=E2N1A55HGR)](https://codecov.io/gh/DM1122/plot)
 
 
-<img src="img/poetry-logo.png" height="64">
+<img src="img/plot-logo.png" height="64">
 
-# Poetry Template
-A template for a poetry-managed repository.
+# Plot
+A wrapper ontop of popular plotting libraries for rapid data visualization.
 
+Icon by [Flaticon](https://www.flaticon.com/free-icons/scatter-plot)
 
 # Contribution
 Instructions for contributing to this project are shown here.
@@ -126,16 +127,14 @@ pytest -v -m "not foo"
 Check out the pytest docs for more neat tricks.
 
 ## Pre-Commit ✅
-This project is configured to use [pre-commit](https://pre-commit.com/) hooks. A hook is a script that performs some operation on the repository before every commit. The pre-commit pipeline is as follows:
-
-1. [Isort](https://pycqa.github.io/isort/): Sorts imports, so you don't have to.
-1. [Black](https://black.readthedocs.io/en/stable/): The uncompromising code autoformatter.
-1. [Docformatter](https://github.com/myint/docformatter): A docstring autoformatter.
-1. [Pylint](https://github.com/pycqa/pylint): It's not just a linter that annoys you!
-
-Pre-commit will not let you push your commit until all hooks pass. This ensures only lint-free code is pushed to the repository. When a hook fails, they can be run manually to delint using:
+This project is configured to use [pre-commit](https://pre-commit.com/) hooks. A hook is a script that performs some operation on the repository before every commit. Hooks are used to autoformat and lint code. Pre-commit will not let you push your commit until all hooks pass. When a hook fails, they can be run manually to delint using:
 ```
 pre-commit run --all-files
+```
+
+Hooks can be updated using:
+```
+pre-commit autoupdate
 ```
 
 ## Branches 🌿
