@@ -15,7 +15,6 @@ from plot import plot
 LOG = logging.getLogger(__name__)
 
 
-@pytest.mark.plot
 def test_line():
     """Test the line plot function with full dimensionality."""
 
@@ -53,7 +52,6 @@ def test_line():
     # endregion
 
 
-@pytest.mark.plot
 def test_line_multiple_traces():
     """Test the line plot function with multiple traces and error bars."""
 
@@ -85,7 +83,6 @@ def test_line_multiple_traces():
     # endregion
 
 
-@pytest.mark.plot
 def test_scatter():
     """Test the scatter plot function with full dimensionality."""
 
@@ -140,7 +137,6 @@ def test_scatter():
     # endregion
 
 
-@pytest.mark.plot
 def test_scatter3():
     """Test the scatter3 plot function with full dimensionality."""
 
@@ -191,7 +187,6 @@ def test_scatter3():
     # endregion
 
 
-@pytest.mark.plot
 def test_surface():
     """Test the surface plot function."""
     # region parameters
@@ -226,7 +221,6 @@ def test_surface():
     # endregion
 
 
-@pytest.mark.plot
 @pytest.mark.skip(reason="Issue with Kaleido and Poetry.")
 def test_save():
     """Test the figure save function."""
