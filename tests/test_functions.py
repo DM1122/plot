@@ -10,7 +10,7 @@ import pandas as pd
 import pytest
 
 # project
-from plot import plot
+import plot
 
 LOG = logging.getLogger(__name__)
 
