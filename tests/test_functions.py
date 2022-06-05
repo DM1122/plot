@@ -11,6 +11,7 @@ import pytest
 
 # project
 import plot
+from plot.libs import utillib
 
 LOG = logging.getLogger(__name__)
 

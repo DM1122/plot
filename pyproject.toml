@@ -8,6 +8,7 @@ authors = ["DM1122"]
 python = ">=3.10,<3.11"
 plotly = "^5.7.0"
 pandas = "^1.4.2"
+astropy = "^5.1"
 
 [tool.poetry.dev-dependencies]
 ipykernel = "^6.13.0"
