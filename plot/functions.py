@@ -37,7 +37,6 @@ def style_to_matplotlib(fig) -> go.Figure:
 
     # x and y-axis formatting
     fig_styled.update_yaxes(
-        title_text="Y-axis",  # axis label
         showline=True,  # add line at x=0
         linecolor="black",  # line color
         linewidth=2.4,  # line size
@@ -49,7 +48,6 @@ def style_to_matplotlib(fig) -> go.Figure:
     )
 
     fig_styled.update_xaxes(
-        title_text="X-axis",
         showline=True,
         showticklabels=True,
         linecolor="black",
