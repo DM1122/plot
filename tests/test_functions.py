@@ -3,6 +3,7 @@
 # stdlib
 import logging
 import math
+from pathlib import Path
 
 # external
 import numpy as np
@@ -228,7 +229,6 @@ def test_save():
 
     x = [1, 2, 3]
     y = [1, 2, 3]
-    filename = "test_save"
 
     fig = plot.scatter(x=x, y=y)
-    plot.save(fig=fig, filename=filename)
+    plot.save(fig=fig, name="save_test_img", path=Path("output/test/img/"))

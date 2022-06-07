@@ -13,8 +13,6 @@ import plotly.graph_objects as go
 
 LOG = logging.getLogger(__name__)
 
-output_path = Path("output/images")
-
 
 def line(
     df: pd.DataFrame,
@@ -227,13 +225,21 @@ def surface(
     return fig
 
 
-def save(fig, filename):  # Unable to find installation candidates for kaleido
+def save(
+    fig, name: str, path: Path
+):  # Unable to find installation candidates for kaleido
     """Saves figure to output path.
 
-    Args:     fig (plotly.figure): figure object.     filename (str): filename.
+    Args:
+        fig: figure object.
+        name: file name without extensions.
+        path: file path.
 
     """
     timestamp = datetime.now().strftime("%Y-%m-%d_%H:%M:%S.%f")
-    file_path = output_path / f"{filename}_{timestamp}.png"
-    fig.write_image(file_path)
-    LOG.info(f"Saved figure to {file_path}")
+
+    filepath = path / f"{name}_{timestamp}.png"
+
+    fig.write_image(filepath)
+
+    LOG.info(f"Saved figure to {filepath}")
