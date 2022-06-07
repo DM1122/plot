@@ -14,6 +14,56 @@ import plotly.graph_objects as go
 LOG = logging.getLogger(__name__)
 
 
+def style_to_matplotlib(fig) -> go.Figure:
+    """Style a plotly figure as a matplotlib figure.
+
+    Args:
+        fig: Plotly figure object to be styled.
+
+    """
+    fig_styled = go.Figure(fig)
+
+    # choose the figure font
+    font_dict = dict(family="Arial", size=26, color="black")
+
+    # general figure formatting
+    fig_styled.update_layout(
+        font=font_dict,  # font formatting
+        plot_bgcolor="white",  # background color
+        width=850,  # figure width
+        height=700,  # figure height
+        margin=dict(r=20, t=20, b=10),  # remove white space
+    )
+
+    # x and y-axis formatting
+    fig_styled.update_yaxes(
+        title_text="Y-axis",  # axis label
+        showline=True,  # add line at x=0
+        linecolor="black",  # line color
+        linewidth=2.4,  # line size
+        ticks="outside",  # ticks outside axis
+        tickfont=font_dict,  # tick label font
+        mirror="allticks",  # add ticks to top/right axes
+        tickwidth=2.4,  # tick width
+        tickcolor="black",  # tick color
+    )
+
+    fig_styled.update_xaxes(
+        title_text="X-axis",
+        showline=True,
+        showticklabels=True,
+        linecolor="black",
+        linewidth=2.4,
+        ticks="outside",
+        tickfont=font_dict,
+        mirror="allticks",
+        tickwidth=2.4,
+        tickcolor="black",
+    )
+
+    return fig_styled
+
+
 def line(
     df: pd.DataFrame,
     x: str,

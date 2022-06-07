@@ -9,6 +9,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import pytest
+from pandas import DataFrame
 
 # project
 import plot
@@ -52,6 +53,28 @@ def test_line():
         title="Test Line Plot",
     )
     # endregion
+
+
+@pytest.mark.star
+def test_style_to_matplotlib():
+    """Test the style to matplotlib method."""
+
+    x = np.arange(start=0, stop=2 * math.pi, step=0.1)
+    y = np.sin(x)
+
+    df = DataFrame({"x": x.flatten(), "y": y.flatten()})
+    LOG.debug(df)
+
+    fig = plot.line(
+        df=df,
+        x="x",
+        y="y",
+        title="Test Line Plot Matplotlib Style",
+    )
+
+    fig_styled = plot.style_to_matplotlib(fig)
+
+    fig_styled.show()
 
 
 def test_line_multiple_traces():
