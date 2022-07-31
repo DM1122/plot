@@ -55,7 +55,6 @@ def test_line():
     # endregion
 
 
-@pytest.mark.star
 def test_style_to_matplotlib():
     """Test the style to matplotlib method."""
 
