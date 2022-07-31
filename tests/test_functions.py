@@ -8,7 +8,6 @@ from pathlib import Path
 # external
 import numpy as np
 import pandas as pd
-import pytest
 from pandas import DataFrame
 
 # project
@@ -71,9 +70,7 @@ def test_style_to_matplotlib():
         title="Test Line Plot Matplotlib Style",
     )
 
-    fig_styled = plot.style_to_matplotlib(fig)
-
-    fig_styled.show()
+    plot.style_to_matplotlib(fig)
 
 
 def test_line_multiple_traces():
@@ -245,12 +242,22 @@ def test_surface():
     # endregion
 
 
-@pytest.mark.skip(reason="Issue with Kaleido and Poetry.")
 def test_save():
     """Test the figure save function."""
 
+    # region parameters
     x = [1, 2, 3]
-    y = [1, 2, 3]
+    # endregion
 
-    fig = plot.scatter(x=x, y=y)
+    # region evaluation
+    y = x
+    # endregion
+
+    # region plot
+    dfd = {"$x$": x, "$y$": y}
+    df = pd.DataFrame(data=dfd)
+    LOG.debug(df)
+
+    fig = plot.line(df=df, x="$x$", y="$y$", title="Test line plot for saving")
     plot.save(fig=fig, name="save_test_img", path=Path("output/test/img/"))
+    # endregion

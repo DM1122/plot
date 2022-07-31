@@ -7,7 +7,6 @@ from pathlib import Path
 
 # external
 import pandas as pd
-import plotly
 import plotly.express as px
 import plotly.graph_objects as go
 
@@ -117,7 +116,7 @@ def line(
     )
 
     if show:
-        plotly.offline.plot(fig, include_mathjax="cdn")
+        fig.show()
 
     return fig
 
@@ -134,6 +133,7 @@ def scatter(
     x_error: str = None,
     y_error: str = None,
     title: str = None,
+    show: bool = False,
 ):
     """Plots a scatter plot. Supports up to 7D data.
 
@@ -155,6 +155,7 @@ def scatter(
         fr: column name to treat as facet row of trace(s).
         x_error: column name to treat as x error of trace(s) for plotting horizontal error bars.
         y_error: column name to treat as y error of trace(s) for plotting vertical error bars.
+        show: whether to show plot.
         title: title of plot.
 
     Returns:
@@ -176,7 +177,8 @@ def scatter(
         facet_row=fr,
     )
 
-    plotly.offline.plot(fig, include_mathjax="cdn")
+    if show:
+        fig.show()
 
     return fig
 
@@ -193,6 +195,7 @@ def scatter3(
     y_error: str = None,
     z_error: str = None,
     title: str = None,
+    show: bool = False,
 ):
     """Plots 3D scatter plot. Supports up to 6D data.
 
@@ -208,6 +211,7 @@ def scatter3(
         y_error: column name to treat as y error of trace(s).
         z_error: column name to treat as z error of trace(s).
         title: title of plot.
+        show: whether to show plot.
 
     Returns:
         figure object.
@@ -227,7 +231,8 @@ def scatter3(
         error_z=z_error,
     )
 
-    plotly.offline.plot(fig, include_mathjax="cdn")
+    if show:
+        fig.show()
 
     return fig
 
@@ -240,6 +245,7 @@ def surface(
     title_x: str = None,
     title_y: str = None,
     title_z: str = None,
+    show: bool = False,
 ):
     """Plots surface data. Supports up to 3D data.
 
@@ -251,6 +257,7 @@ def surface(
         title_x: title of x-axis.
         title_y: title of y-axis.
         title_z: title of z-axis.
+        show: whether to show plot.
 
     Returns:
         figure object.
@@ -268,26 +275,31 @@ def surface(
         scene=dict(xaxis_title=title_x, yaxis_title=title_y, zaxis_title=title_z),
     )
 
-    plotly.offline.plot(fig, include_mathjax="cdn")
+    if show:
+        fig.show()
 
     return fig
 
 
-def save(
-    fig, name: str, path: Path
-):  # Unable to find installation candidates for kaleido
-    """Saves figure to output path.
+def save(fig, name: str, path: Path):
+    """Saves figure as an HTML to the output path.
 
     Args:
         fig: figure object.
         name: file name without extensions.
-        path: file path.
+        path: directory in which to save the figure.
+
+    Returns:
+        Saved filepath.
 
     """
-    timestamp = datetime.now().strftime("%Y-%m-%d_%H:%M:%S.%f")
+    path.mkdir(parents=True, exist_ok=True)
+    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S-%f")
 
-    filepath = path / f"{name}_{timestamp}.png"
+    filepath = path / f"{name}_{timestamp}.html"
 
-    fig.write_image(filepath)
+    fig.write_html(filepath, include_mathjax="cdn")
 
     LOG.info(f"Saved figure to {filepath}")
+
+    return filepath
